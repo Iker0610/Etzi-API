@@ -1,0 +1,74 @@
+version: "3.9"
+
+services:
+  api:
+    build: api/.
+    image: etzi-api
+    restart: always
+
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app-http.rule=Host(`api.etzi.eus`)
+      - traefik.http.routers.app-http.tls=true
+      - traefik.http.routers.app-http.tls.certresolver=letsencrypt
+
+    expose:
+      - "8000"
+
+    environment:
+      POSTGRES_IP: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $${POSTGRES_PASSWORD:?err}
+      POSTGRES_DB: etzi
+      API_JWT_SECRET_KEY: $${API_JWT_SECRET_KEY:?err}
+      FIREBASE_CREDENTIALS: ${API_FIREBASE_CREDENTIALS}
+      IMAGES_PATH: /etzi/images
+
+    volumes:
+      - "/root/etzi/api/images:/etzi/images"
+      - "${CREDENTIALS_FOLDER}:${API_CREDENTIALS_FOLDER}"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+
+  postgres:
+    build: db/.
+    image: postgres-db
+    restart: always
+
+    user: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $${POSTGRES_PASSWORD:?err}
+      POSTGRES_DB: omegaterapia
+
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    volumes:
+      - db:/var/lib/postgresql/data
+
+
+  traefik:
+    image: traefik:latest
+    restart: always
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - $PWD/services/traefik/traefik.toml:/etc/traefik/traefik.toml
+      - traefik-public-certificates:/certificates
+
+
+volumes:
+  db:
+  traefik-public-certificates:
