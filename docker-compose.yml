@@ -43,7 +43,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: $${POSTGRES_PASSWORD:?err}
-      POSTGRES_DB: omegaterapia
+      POSTGRES_DB: etzi
 
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
