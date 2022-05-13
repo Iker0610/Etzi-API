@@ -155,26 +155,49 @@ INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
 VALUES ('123456', 'ya se verá', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');*/
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('987654', 'Minería de datos', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+VALUES ('987654', 'Minería de datos', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('987654', 'Norma y uso de la lengua vasca', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', -1);
+VALUES ('987654', 'Norma y uso de la lengua vasca', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', -1);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('987654', 'Desarrollo avanzado de software', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 2);
+VALUES ('987654', 'Desarrollo avanzado de software', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 2);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('987654', 'Servicios telemáticos avanzados', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+VALUES ('987654', 'Servicios telemáticos avanzados', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('900900', 'Minería de datos', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 2);
+VALUES ('900900', 'Minería de datos', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 2);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('900900', 'Técnicas de inteligencia artificial', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+VALUES ('900900', 'Técnicas de inteligencia artificial', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('900900', 'Robótica', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+VALUES ('900900', 'Robótica', '2022-09-07', 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('900900', 'Despliegue y gestión de redes y servicios', '2022-09-07','Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+VALUES ('900900', 'Despliegue y gestión de redes y servicios', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+
+
+INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
+VALUES ('123456', 'Minería de datos', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 2);
+
+INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
+VALUES ('123456', 'Administración de sistemas', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+
+INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
+VALUES ('123456', 'Robótica', '2022-09-07', 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+
+INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
+VALUES ('123456', 'English for information technology', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', -1);
