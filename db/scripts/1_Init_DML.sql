@@ -140,9 +140,8 @@ VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2022-06-04 15:00:00', '2022-05-04 1
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
 VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2022-06-09 16:00:00', '2022-06-09 18:00:00');
 
--- Lecture Class
 
--- Lecture Enrollment
+-- Subject Enrollment
 /*
     INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
 VALUES ('987654', 'alguna', 'Sub', 'Woolfer', 'swoolfer001@ikasle.ehu.eus',
@@ -155,5 +154,5 @@ VALUES ('900900', 'ya se verá', 'Rosa', 'Linn', 'rlinn001@ikasle.ehu.eus',
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
 VALUES ('123456', 'ya se verá', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');*/
-INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
+INSERT INTO subject_enrollment (ldap, subject_name, academic_year, degree, subgroup)
 VALUES ('987654', 'Minería de datos', '2022')

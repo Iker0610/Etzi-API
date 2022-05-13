@@ -1,7 +1,7 @@
 import random
 from datetime import date, timedelta, datetime
 
-intro_sql = 'INSERT INTO lecture_class (lecture_name, academic_year, degree, subgroup, professor_email, room_number, room_floor, room_building, start_date, end_date)'
+intro_sql = 'INSERT INTO lecture (subject_name, academic_year, degree, subgroup, professor_email, room_number, room_floor, room_building, start_date, end_date)'
 
 professors = ['alicia.perez@ehu.eus', 'aitziber.atutxa@ehu.eus', 'koldo.gojenola@ehu.eus', 'iker.sobron@ehu.eus', 'mikel.villamane@ehu.eus', 'marialuz.alvarez@ehu.eus']
 aulas = [[10, 3, 1], [12, 3, 1], [10, 2, 1], [12, 2, 1], [10, 1, 1], [12, 1, 1], [10, 3, 2], [12, 3, 2], [10, 2, 2], [12, 2, 2], [10, 1, 2], [12, 1, 2]]

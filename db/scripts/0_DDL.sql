@@ -31,7 +31,7 @@ CREATE TABLE academic_year
     PRIMARY KEY (start_date)
 );
 
-CREATE TABLE lecture
+CREATE TABLE subject
 (
     name          TEXT        NOT NULL,
     academic_year DATE        NOT NULL,
@@ -45,24 +45,24 @@ CREATE TABLE lecture
     FOREIGN KEY (degree) REFERENCES degree (name)
 );
 
-CREATE TABLE lecture_call
+CREATE TABLE subject_call
 (
-    lecture_name  TEXT        NOT NULL,
+    subject_name  TEXT        NOT NULL,
     academic_year DATE        NOT NULL,
     degree        TEXT        NOT NULL,
 
     call_type     VARCHAR(14) NOT NULL,
     exam_date     TIMESTAMP   NOT NULL,
 
-    PRIMARY KEY (lecture_name, academic_year, degree, call_type),
-    FOREIGN KEY (lecture_name, academic_year, degree) REFERENCES lecture (name, academic_year, degree)
+    PRIMARY KEY (subject_name, academic_year, degree, call_type),
+    FOREIGN KEY (subject_name, academic_year, degree) REFERENCES subject (name, academic_year, degree)
 );
 
-CREATE TABLE lecture_call_attendance
+CREATE TABLE subject_call_attendance
 (
     student_ldap  CHAR(6)     NOT NULL,
 
-    lecture_name  TEXT        NOT NULL,
+    subject_name  TEXT        NOT NULL,
     academic_year DATE        NOT NULL,
     degree        TEXT        NOT NULL,
 
@@ -70,9 +70,9 @@ CREATE TABLE lecture_call_attendance
     grade         VARCHAR(5)  NOT NULL DEFAULT '',
     distinction   BOOLEAN     NOT NULL DEFAULT FALSE,
 
-    PRIMARY KEY (student_ldap, lecture_name, academic_year, degree, call_type),
+    PRIMARY KEY (student_ldap, subject_name, academic_year, degree, call_type),
     FOREIGN KEY (student_ldap) REFERENCES student (ldap),
-    FOREIGN KEY (lecture_name, academic_year, degree, call_type) REFERENCES lecture_call (lecture_name, academic_year, degree, call_type)
+    FOREIGN KEY (subject_name, academic_year, degree, call_type) REFERENCES subject_call (subject_name, academic_year, degree, call_type)
 );
 
 CREATE TABLE building
@@ -120,9 +120,9 @@ CREATE TABLE tutorial
     FOREIGN KEY (room_number, room_floor, room_building) REFERENCES lecture_room (number, floor, building)
 );
 
-CREATE TABLE lecture_class
+CREATE TABLE lecture
 (
-    lecture_name    TEXT      NOT NULL,
+    subject_name    TEXT      NOT NULL,
     academic_year   DATE      NOT NULL,
     degree          TEXT      NOT NULL,
 
@@ -137,23 +137,23 @@ CREATE TABLE lecture_class
     start_date      TIMESTAMP NOT NULL,
     end_date        TIMESTAMP NOT NULL,
 
-    PRIMARY KEY (lecture_name, academic_year, degree, start_date, subgroup),
-    FOREIGN KEY (lecture_name, academic_year, degree) REFERENCES lecture (name, academic_year, degree),
+    PRIMARY KEY (subject_name, academic_year, degree, start_date, subgroup),
+    FOREIGN KEY (subject_name, academic_year, degree) REFERENCES subject (name, academic_year, degree),
     FOREIGN KEY (professor_email) REFERENCES professor (email),
     FOREIGN KEY (room_number, room_floor, room_building) REFERENCES lecture_room (number, floor, building)
 );
 
-CREATE TABLE lecture_enrollment
+CREATE TABLE subject_enrollment
 (
     ldap          CHAR(6)  NOT NULL,
 
-    lecture_name  TEXT     NOT NULL,
+    subject_name  TEXT     NOT NULL,
     academic_year DATE     NOT NULL,
     degree        TEXT     NOT NULL,
 
     subgroup      SMALLINT NOT NULL,
 
-    PRIMARY KEY (ldap, lecture_name, academic_year, degree),
+    PRIMARY KEY (ldap, subject_name, academic_year, degree),
     FOREIGN KEY (ldap) REFERENCES student (ldap),
-    FOREIGN KEY (lecture_name, academic_year, degree) REFERENCES lecture (name, academic_year, degree)
+    FOREIGN KEY (subject_name, academic_year, degree) REFERENCES subject (name, academic_year, degree)
 );
