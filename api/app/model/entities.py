@@ -32,8 +32,8 @@ class AcademicYear(Base):
     end_date = Column(DATE)
 
 
-class Lecture(Base):
-    __tablename__ = "lecture"
+class Subject(Base):
+    __tablename__ = "subject"
 
     name = Column(TEXT, primary_key=True, index=True)
     academic_year_start = Column(DATE, ForeignKey("academic_year.start_date"), name="academic_year", primary_key=True, index=True)
@@ -46,35 +46,35 @@ class Lecture(Base):
     academic_year = relationship('AcademicYear')
 
 
-class LectureCall(Base):
-    __tablename__ = "lecture_call"
+class SubjectCall(Base):
+    __tablename__ = "subject_call"
 
-    lecture_name = Column(TEXT, ForeignKey("lecture.lecture_name"), primary_key=True, index=True)
-    academic_year = Column(DATE, ForeignKey("lecture.academic_year"), primary_key=True, index=True)
-    degree = Column(TEXT, ForeignKey("lecture.degree"), primary_key=True, index=True)
+    subject_name = Column(TEXT, ForeignKey("subject.name"), primary_key=True, index=True)
+    academic_year = Column(DATE, ForeignKey("subject.academic_year"), primary_key=True, index=True)
+    degree = Column(TEXT, ForeignKey("subject.degree"), primary_key=True, index=True)
 
     call_type = Column(VARCHAR(12), primary_key=True, index=True)
     exam_date = Column(TIMESTAMP)
 
     # Relationships
-    lecture = relationship('Lecture')
+    subject = relationship('Subject')
 
 
-class LectureCallAttendance:
-    __tablename__ = "lecture_call_attendance"
+class SubjectCallAttendance:
+    __tablename__ = "subject_call_attendance"
 
     student_ldap = Column(CHAR(6), ForeignKey("student.ldap"), primary_key=True, index=True)
 
-    lecture_name = Column(TEXT, ForeignKey("lecture.lecture_name"), primary_key=True, index=True)
-    academic_year = Column(DATE, ForeignKey("lecture.academic_year"), primary_key=True, index=True)
-    degree = Column(TEXT, ForeignKey("lecture.degree"), primary_key=True, index=True)
-    call_type = Column(VARCHAR(12), ForeignKey("lecture.degree"), primary_key=True, index=True)
+    subject_name = Column(TEXT, ForeignKey("subject_call.subject_name"), primary_key=True, index=True)
+    academic_year = Column(DATE, ForeignKey("subject_call.academic_year"), primary_key=True, index=True)
+    degree = Column(TEXT, ForeignKey("subject_call.degree"), primary_key=True, index=True)
+    call_type = Column(VARCHAR(12), primary_key=True, index=True)
 
     grade = Column(VARCHAR(5), default='')
     distinction = Column(BOOLEAN, default=False)
 
     # Relationships
-    lecture_call = relationship('LectureCall')
+    subject_call = relationship('SubjectCall')
     student = relationship('Student')
 
 
@@ -123,12 +123,12 @@ class Tutorial:
     lecture_room = relationship('LectureRoom')
 
 
-class LectureClass:
-    __tablename__ = "lecture_class"
+class Lecture:
+    __tablename__ = "lecture"
 
-    lecture_name = Column(TEXT, ForeignKey("lecture.lecture_name"), primary_key=True, index=True)
-    academic_year = Column(DATE, ForeignKey("lecture.academic_year"), primary_key=True, index=True)
-    degree = Column(TEXT, ForeignKey("lecture.degree"), primary_key=True, index=True)
+    subject_name = Column(TEXT, ForeignKey("subject.name"), primary_key=True, index=True)
+    academic_year = Column(DATE, ForeignKey("subject.academic_year"), primary_key=True, index=True)
+    degree = Column(TEXT, ForeignKey("subject.degree"), primary_key=True, index=True)
 
     subgroup = Column(SMALLINT, primary_key=True, index=True)
 
@@ -142,22 +142,22 @@ class LectureClass:
     end_date = Column(TIMESTAMP)
 
     # Relationships
-    lecture = relationship('Lecture')
+    subject = relationship('Subject')
     professor = relationship('Professor')
     lecture_room = relationship('LectureRoom')
 
 
-class LectureEnrollment:
-    __tablename__ = "lecture_enrollment"
+class SubjectEnrollment:
+    __tablename__ = "subject_enrollment"
 
     student_ldap = Column(CHAR(6), ForeignKey("student.ldap"), primary_key=True, index=True)
 
-    lecture_name = Column(TEXT, ForeignKey("lecture.lecture_name"), primary_key=True, index=True)
-    academic_year = Column(DATE, ForeignKey("lecture.academic_year"), primary_key=True, index=True)
-    degree = Column(TEXT, ForeignKey("lecture.degree"), primary_key=True, index=True)
+    subject_name = Column(TEXT, ForeignKey("subject.name"), primary_key=True, index=True)
+    academic_year = Column(DATE, ForeignKey("subject.academic_year"), primary_key=True, index=True)
+    degree = Column(TEXT, ForeignKey("subject.degree"), primary_key=True, index=True)
 
     subgroup = Column(SMALLINT)
 
     # Relationships
-    lecture = relationship('Lecture')
+    subject = relationship('Subject')
     student = relationship('Student')
