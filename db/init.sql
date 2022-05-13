@@ -67,6 +67,8 @@ CREATE TABLE lecture_call_attendance
     degree        TEXT        NOT NULL,
 
     call_type     VARCHAR(12) NOT NULL,
+    grade         VARCHAR(5)  NOT NULL DEFAULT '',
+    distinction   BOOLEAN     NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (student_ldap, lecture_name, academic_year, degree, call_type),
     FOREIGN KEY (student_ldap) REFERENCES student (ldap),
@@ -165,13 +167,16 @@ VALUES ('Grado en Ingeniería Informática de Gestión y Sistemas de Informació
 
 --Students
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('987654', 'alguna', 'Sub', 'Woolfer', 'swoolfer@ikasle.ehu.eus', 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('987654', 'alguna', 'Sub', 'Woolfer', 'swoolfer@ikasle.ehu.eus',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('900900', 'ya se verá', 'Rosa', 'Linn', 'rlinn001@ikasle.ehu.eus', 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('900900', 'ya se verá', 'Rosa', 'Linn', 'rlinn001@ikasle.ehu.eus',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('123456', 'ya se verá', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus', 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('123456', 'ya se verá', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 --Academic year
 INSERT INTO academic_year (start_date, end_date)
 VALUES (TO_DATE('01-09-2021', 'DD-MM-YYYY'), TO_DATE('31-07-2022', 'DD-MM-YYYY'));
@@ -188,106 +193,464 @@ VALUES (TO_DATE('01-09-2018', 'DD-MM-YYYY'), TO_DATE('31-07-2019', 'DD-MM-YYYY')
 -- Lectures
 -- 1st year
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Análisis matemático', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Análisis matemático', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Cálculo', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Cálculo', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Fundamentos de Tecnología de Computadores', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Fundamentos de Tecnología de Computadores', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Estructura de Computadores', 6, 'Obligatoria', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Estructura de Computadores', 6, 'Obligatoria', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Matemática Discreta', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Matemática Discreta', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Principios de Diseño de Sistemas Digitales', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Principios de Diseño de Sistemas Digitales', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Programación básica', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Programación básica', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Metodología de la programación', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Metodología de la programación', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Programación modular y orientación a objetos', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Programación modular y orientación a objetos', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Álgebra', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Álgebra', 6, 'Básica de rama', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 -- 2nd year
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Arquitectura de computadores', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Arquitectura de computadores', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Bases de datos', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Bases de datos', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Economía y administración de empresas', 6, 'Básica de rama', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Economía y administración de empresas', 6, 'Básica de rama', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Estructuras de datos y algoritmos', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Estructuras de datos y algoritmos', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Ingeniería del software', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Ingeniería del software', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Lenguajes, computación y sistemas inteligentes', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Lenguajes, computación y sistemas inteligentes', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Introducción a los sistemas operativos', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Introducción a los sistemas operativos', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Investigación operativa', 6, 'Básica de rama', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Investigación operativa', 6, 'Básica de rama', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Introducción a las redes de computadores', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Introducción a las redes de computadores', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Métodos estadísticos de la ingeniería', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Métodos estadísticos de la ingeniería', 6, 'Obligatoria', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 -- 3rd year
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Análisis y diseño de sistemas de información', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Análisis y diseño de sistemas de información', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Diseño de bases de datos', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Diseño de bases de datos', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Organización de la producción', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Organización de la producción', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Sistemas de gestión integrada', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Sistemas de gestión integrada', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Sistemas de Gestión de seguridad de sistemas de información', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Sistemas de Gestión de seguridad de sistemas de información', 6, 'Obligatoria',
+        TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Administración de bases de datos', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Administración de bases de datos', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Gestión de proyectos', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Gestión de proyectos', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Sistemas web', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Sistemas web', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Sistemas de apoyo a la decisión', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Sistemas de apoyo a la decisión', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Software de gestión de empresa', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Software de gestión de empresa', 6, 'Obligatoria', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 -- 4th year
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Minería de datos', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Minería de datos', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Administración de sistemas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Administración de sistemas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Aspectos profesionales de la informática', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Aspectos profesionales de la informática', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Norma y uso de la lengua vasca', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Norma y uso de la lengua vasca', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Programación práctica de PLCs', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Programación práctica de PLCs', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Redes y servicios móviles', 4, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Redes y servicios móviles', 4, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Regulación automática', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Regulación automática', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Servicios multimedia', 4, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Servicios multimedia', 4, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Técnicas de inteligencia artificial', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Técnicas de inteligencia artificial', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Comunicación en euskera: áreas técnicas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Comunicación en euskera: áreas técnicas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Desarrollo avanzado de software', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Desarrollo avanzado de software', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Desarrollo de aplicaciones web enriquecidas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Desarrollo de aplicaciones web enriquecidas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Despliegue y gestión de redes y servicios', 4, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Despliegue y gestión de redes y servicios', 4, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('English for information technology', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('English for information technology', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Modelado y simulación de sistemas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Modelado y simulación de sistemas', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Robótica', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Robótica', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Servicios telemáticos avanzados', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Servicios telemáticos avanzados', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Software para matemática aplicada', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Software para matemática aplicada', 6, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO lecture (name, credits, type, academic_year, degree)
-VALUES ('Trabajo fin de grado', 12, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+VALUES ('Trabajo fin de grado', 12, 'Optativa', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+
+-- Lecture call 1st year
+-- Ordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Análisis matemático', 'Ordinaria', '2019-01-14 15:00:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Cálculo', 'Ordinaria', '2019-05-26 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Fundamentos de Tecnología de Computadores', 'Ordinaria', '2019-01-11 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Estructura de Computadores', 'Ordinaria', '2019-06-02 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Matemática Discreta', 'Ordinaria', '2019-01-21 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Principios de Diseño de Sistemas Digitales', 'Ordinaria', '2018-12-22 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Programación básica', 'Ordinaria', '2019-01-18 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Metodología de la programación', 'Ordinaria', '2019-05-19 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Programación modular y orientación a objetos', 'Ordinaria', '2019-05-30 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Álgebra', 'Ordinaria', '2019-05-23 08:30:00' , TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+-- Extraordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Análisis matemático', 'Extraordinaria', '2019-06-14 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Cálculo', 'Extraordinaria', '2019-06-28 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Fundamentos de Tecnología de Computadores', 'Extraordinaria', '2019-06-15 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Estructura de Computadores', 'Extraordinaria', '2019-06-30 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Matemática Discreta', 'Extraordinaria', '2019-06-23 15:00:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Principios de Diseño de Sistemas Digitales', 'Extraordinaria', '2019-06-21 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Programación básica', 'Extraordinaria', '2019-06-21 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Metodología de la programación', 'Extraordinaria', '2019-06-29 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Programación modular y orientación a objetos', 'Extraordinaria', '2019-07-01 08:30:00', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Álgebra', 'Extraordinaria', '2019-06-24 15:00:00' , TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+-- Lecture call 2nd year
+-- Ordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Arquitectura de computadores', 'Ordinaria', '2020-01-20 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Bases de datos', 'Ordinaria', '2020-05-20 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Economía y administración de empresas', 'Ordinaria', '2020-01-13 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Estructuras de datos y algoritmos', 'Ordinaria', '2019-12-21 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Ingeniería del software', 'Ordinaria', '2020-05-31 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Lenguajes, computación y sistemas inteligentes', 'Ordinaria', '2020-01-20 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Introducción a los sistemas operativos', 'Ordinaria', '2020-05-27 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Investigación operativa', 'Ordinaria', '2020-05-24 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Introducción a las redes de computadores', 'Ordinaria', '2020-06-03 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Métodos estadísticos de la ingeniería', 'Ordinaria', '2020-01-17 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+--Extraordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Arquitectura de computadores', 'Extraordinaria', '2020-06-14 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Bases de datos', 'Extraordinaria', '2020-06-22 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Economía y administración de empresas', 'Extraordinaria', '2020-06-16 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Estructuras de datos y algoritmos', 'Extraordinaria', '2020-06-17 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Ingeniería del software', 'Extraordinaria', '2020-06-23 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Lenguajes, computación y sistemas inteligentes', 'Extraordinaria', '2020-06-28 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Introducción a los sistemas operativos', 'Extraordinaria', '2020-06-29 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Investigación operativa', 'Extraordinaria', '2020-06-30 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Introducción a las redes de computadores', 'Extraordinaria', '2020-06-27 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Métodos estadísticos de la ingeniería', 'Extraordinaria', '2020-06-20 08:30:00', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+
+-- Lecture call 3rd year
+-- Ordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Análisis y diseño de sistemas de información', 'Ordinaria', '2021-01-21 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Diseño de bases de datos', 'Ordinaria', '2020-12-22 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Organización de la producción', 'Ordinaria', '2021-01-19 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas de gestión integrada', 'Ordinaria', '2020-01-12 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas de Gestión de seguridad de sistemas de información', 'Ordinaria', '2021-01-14 15:00:00',
+        TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Administración de bases de datos', 'Ordinaria', '2021-05-19 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Gestión de proyectos', 'Ordinaria', '2021-06-02 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas web', 'Ordinaria', '2021-05-25 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas de apoyo a la decisión', 'Ordinaria', '2021-05-30 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Software de gestión de empresa', 'Ordinaria', '2021-05-27 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+-- Extraordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Análisis y diseño de sistemas de información', 'Extraordinaria', '2021-06-16 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Diseño de bases de datos', 'Extraordinaria', '2021-06-17 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Organización de la producción', 'Extraordinaria', '2021-06-15 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas de gestión integrada', 'Extraordinaria', '2021-06-20 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas de Gestión de seguridad de sistemas de información', 'Extraordinaria', '2021-06-21 15:00:00',
+        TO_DATE('01-09-2020', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Administración de bases de datos', 'Extraordinaria', '2021-06-24 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Gestión de proyectos', 'Extraordinaria', '2021-06-22 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas web', 'Extraordinaria', '2021-07-01 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Sistemas de apoyo a la decisión', 'Extraordinaria', '2021-06-27 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Software de gestión de empresa', 'Extraordinaria', '2021-06-29 15:00:00', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+
+-- Lecture call 4th year
+-- Ordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Minería de datos', 'Ordinaria', '2022-01-11 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Administración de sistemas', 'Ordinaria', '2022-01-10 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Aspectos profesionales de la informática', 'Ordinaria', '2022-01-19 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Norma y uso de la lengua vasca', 'Ordinaria', '2021-12-21 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Programación práctica de PLCs', 'Ordinaria', '2022-01-07 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Redes y servicios móviles', 'Ordinaria', '2022-01-18 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Regulación automática', 'Ordinaria', '2022-01-14 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Servicios multimedia', 'Ordinaria', '2022-01-20 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Técnicas de inteligencia artificial', 'Ordinaria', '2022-01-17 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Comunicación en euskera: áreas técnicas', 'Ordinaria', '2022-05-24 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Desarrollo avanzado de software', 'Ordinaria', '2022-05-25 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Desarrollo de aplicaciones web enriquecidas', 'Ordinaria', '2022-05-30 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Despliegue y gestión de redes y servicios', 'Ordinaria', '2022-06-03 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('English for information technology', 'Ordinaria', '2022-05-20 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Modelado y simulación de sistemas', 'Ordinaria', '2022-06-02 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Robótica', 'Ordinaria', '2022-06-23 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Servicios telemáticos avanzados', 'Ordinaria', '2022-05-23 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Software para matemática aplicada', 'Ordinaria', '2022-06-01 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Trabajo fin de grado', 'Ordinaria', '2022-06-02 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+-- Extraordinaria
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Minería de datos', 'Extraordinaria', '2022-06-24 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Administración de sistemas', 'Extraordinaria', '2022-06-23 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Aspectos profesionales de la informática', 'Extraordinaria', '2022-06-22 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Norma y uso de la lengua vasca', 'Extraordinaria', '2022-06-21 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Programación práctica de PLCs', 'Extraordinaria', '2022-06-20 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Redes y servicios móviles', 'ExtraExtraordinaria', '2022-06-19 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Regulación automática', 'Extraordinaria', '2022-06-18 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Servicios multimedia', 'ExtraExtraordinaria', '2022-06-17 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Técnicas de inteligencia artificial', 'Extraordinaria', '2022-06-16 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Comunicación en euskera: áreas técnicas', 'Extraordinaria', '2022-06-15 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Desarrollo avanzado de software', 'Extraordinaria', '2022-06-30 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Desarrollo de aplicaciones web enriquecidas', 'Extraordinaria', '2022-06-29 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Despliegue y gestión de redes y servicios', 'ExtraExtraordinaria', '2022-06-24 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('English for information technology', 'Extraordinaria', '2022-06-30 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Modelado y simulación de sistemas', 'Extraordinaria', '2022-07-01 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Robótica', 'Extraordinaria', '2022-07-02 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Servicios telemáticos avanzados', 'Extraordinaria', '2022-07-03 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Software para matemática aplicada', 'Extraordinaria', '2022-06-24 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+INSERT INTO lecture_call (lecture_name, call_type, exam_date, academic_year, degree)
+VALUES ('Trabajo fin de grado', 'Extraordinaria', '2022-07-02 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
