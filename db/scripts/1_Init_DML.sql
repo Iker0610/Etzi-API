@@ -196,7 +196,8 @@ VALUES ('123456', 'Administración de sistemas', '2022-09-07',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
-VALUES ('123456', 'Robótica', '2022-09-07', 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
+VALUES ('123456', 'Comunicación en euskera: áreas técnicas', '2022-09-07',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO lecture_enrollment (ldap, lecture_name, academic_year, degree, subgroup)
 VALUES ('123456', 'English for information technology', '2022-09-07',
