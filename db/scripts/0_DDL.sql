@@ -37,6 +37,7 @@ CREATE TABLE subject
     academic_year DATE        NOT NULL,
     degree        TEXT        NOT NULL,
 
+    course        SMALLINT    NOT NULL,
     type          VARCHAR(20) NOT NULL,
     credits       SMALLINT    NOT NULL,
 
@@ -66,9 +67,10 @@ CREATE TABLE subject_call_attendance
     academic_year DATE        NOT NULL,
     degree        TEXT        NOT NULL,
 
-    call_type     VARCHAR(12) NOT NULL,
+    call_type     VARCHAR(14) NOT NULL,
     grade         VARCHAR(5)  NOT NULL DEFAULT '',
     distinction   BOOLEAN     NOT NULL DEFAULT FALSE,
+    provisional   BOOLEAN     NOT NULL DEFAULT TRUE,
 
     PRIMARY KEY (student_ldap, subject_name, academic_year, degree, call_type),
     FOREIGN KEY (student_ldap) REFERENCES student (ldap),
