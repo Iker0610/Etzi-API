@@ -34,10 +34,10 @@ VALUES (TO_DATE('01-09-2018', 'DD-MM-YYYY'), TO_DATE('31-07-2019', 'DD-MM-YYYY')
 
 -- Buildings
 INSERT INTO building (id, abbreviation, name, address)
-VALUES ('1', 'i', 'EIB/BIE II - I',
+VALUES ('1', 'I', 'EIB/BIE II - I',
         'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
 INSERT INTO building (id, abbreviation, name, address)
-VALUES ('2', 'm', 'EIB/BIE II - M', 'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
+VALUES ('2', 'M', 'EIB/BIE II - M', 'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
 
 
 -- Lecture rooms

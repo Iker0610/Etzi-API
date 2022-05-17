@@ -56,6 +56,7 @@ def set_user_profile_image_url(db: Session, user: str | entities.Student, url: s
 
     return bool(user)
 
+
 # --------------------------------------------------------------------
 
 def create_user(db: Session, user: api_models.UserAuth) -> entities.Student | None:
