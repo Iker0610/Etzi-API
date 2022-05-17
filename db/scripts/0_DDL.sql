@@ -80,7 +80,7 @@ CREATE TABLE building
     id           TEXT NOT NULL,
     abbreviation TEXT NOT NULL,
     name         TEXT NOT NULL,
-    direction    TEXT NOT NULL,
+    address      TEXT NOT NULL,
 
     PRIMARY KEY (id)
 );
