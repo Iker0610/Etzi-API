@@ -11,8 +11,7 @@ from firebase_admin import credentials, messaging
 from sqlalchemy.orm import Session
 from unidecode import unidecode
 
-from . import api_models
-from .api_models import Message, FirebaseClientToken
+from .api_models import Message, FirebaseClientToken, StudentData, Lecture
 from .auth_utils import get_verified_current_user, create_access_token, CREDENTIALS_EXCEPTION, create_refresh_token, TokenResponse, decode_token, OAuth2RefreshTokenForm
 from .model import crud
 from .model.database import get_db
@@ -116,21 +115,33 @@ async def refresh(form_data: OAuth2RefreshTokenForm = Depends(), db: Session = D
 
 # ---------------------------------------------------------
 
-@app.post("/users", tags=["Users"],
-          response_model=api_models.User, status_code=status.HTTP_201_CREATED,
-          responses={400: {"description": "Password is not valid."}, 409: {"description": "ldap already registered."}}, )
-async def create_user(user: api_models.UserAuth, db: Session = Depends(get_db)):
-    if len(user.password) < 5:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password is not valid.")
+# @app.post("/users", tags=["Users"],
+#           response_model=api_models.User, status_code=status.HTTP_201_CREATED,
+#           responses={400: {"description": "Password is not valid."}, 409: {"description": "ldap already registered."}}, )
+# async def create_user(user: api_models.UserAuth, db: Session = Depends(get_db)):
+#     if len(user.password) < 5:
+#         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password is not valid.")
+#
+#     if not (db_user := crud.create_user(db=db, user=user)):
+#         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="ldap already registered.")
+#     return db_user
 
-    if not (db_user := crud.create_user(db=db, user=user)):
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="ldap already registered.")
-    return db_user
+
+# @app.get("/users", response_model=list[api_models.UserAuth], status_code=status.HTTP_200_OK, tags=["Users"])
+# async def get_users(db: Session = Depends(get_db)):
+#     return crud.get_users(db)
 
 
-@app.get("/users", response_model=list[api_models.User], status_code=status.HTTP_200_OK, tags=["Users"])
-async def get_users(skip: int = 0, limit: int = 100, _: str = Depends(get_verified_current_user), db: Session = Depends(get_db)):
-    return crud.get_users(db, skip, limit)
+# ---------------------------------------------------------
+
+@app.get("/student", response_model=StudentData, status_code=status.HTTP_200_OK, tags=["Student"])
+async def get_subject(db: Session = Depends(get_db), current_user_ldap: str = Depends(get_verified_current_user)):
+    return crud.get_student_data(db, current_user_ldap)
+
+
+@app.get("/student/timetable", response_model=list[Lecture], status_code=status.HTTP_200_OK, tags=["Student"])
+async def get_subject(db: Session = Depends(get_db), current_user_ldap: str = Depends(get_verified_current_user)):
+    return crud.get_student_timetable(db, current_user_ldap)
 
 
 # ---------------------------------------------------------
@@ -138,10 +149,10 @@ async def get_users(skip: int = 0, limit: int = 100, _: str = Depends(get_verifi
 
 @app.get("/profile/image", tags=["Profile"],
          status_code=status.HTTP_200_OK, response_class=FileResponse,
-         responses={404: {"description": "User doesn't exists."}})
-async def get_user_profile_image(current_user: str = Depends(get_verified_current_user), db: Session = Depends(get_db)):
-    if not (user_profile_image_url := crud.get_user_profile_image_url(db, ldap=current_user)):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User doesn't exists.")
+         responses={404: {"description": "Student doesn't exists."}})
+async def get_user_profile_image(current_user_ldap: str = Depends(get_verified_current_user), db: Session = Depends(get_db)):
+    if not (user_profile_image_url := crud.get_user_profile_image_url(db, ldap=current_user_ldap)):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student doesn't exists.")
 
     if Path(user_profile_image_url).exists():
         return FileResponse(user_profile_image_url, filename=Path(user_profile_image_url).name)
@@ -151,16 +162,16 @@ async def get_user_profile_image(current_user: str = Depends(get_verified_curren
 
 @app.put("/profile/image", tags=["Profile"],
          status_code=status.HTTP_204_NO_CONTENT,
-         responses={404: {"description": "User doesn't exists."}, 400: {"description": f"File is not a valid image file. Valid types: {', '.join(VALID_IMAGE_MIME_TYPES)}"}})
-async def set_user_profile_image(file: UploadFile, current_user: str = Depends(get_verified_current_user), db: Session = Depends(get_db)):
-    if not (user := crud.get_user(db, current_user)):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User doesn't exists.")
+         responses={404: {"description": "Student doesn't exists."}, 400: {"description": f"File is not a valid image file. Valid types: {', '.join(VALID_IMAGE_MIME_TYPES)}"}})
+async def set_user_profile_image(file: UploadFile, current_user_ldap: str = Depends(get_verified_current_user), db: Session = Depends(get_db)):
+    if not (user := crud.get_user_ldap(db, current_user_ldap)):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student doesn't exists.")
 
     if file.content_type not in VALID_IMAGE_MIME_TYPES:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"File is not a valid image file. Valid types: {', '.join(VALID_IMAGE_MIME_TYPES)}")
 
     file_extension = guess_extension(file.content_type)
-    path = f"{environ['IMAGES_PATH']}/{current_user}{file_extension}"
+    path = f"{environ['IMAGES_PATH']}/{current_user_ldap}{file_extension}"
 
     if crud.set_user_profile_image_url(db, user, path):
         contents = await file.read()
@@ -171,9 +182,9 @@ async def set_user_profile_image(file: UploadFile, current_user: str = Depends(g
 # ---------------------------------------------------------
 
 @app.post('/notifications/subscribe', status_code=status.HTTP_202_ACCEPTED, tags=["Notifications"])
-def suscribe_user_to_alert(token: FirebaseClientToken, current_user: str = Depends(get_verified_current_user)):
+def suscribe_user_to_alert(token: FirebaseClientToken, current_user_ldap: str = Depends(get_verified_current_user)):
     # Procesamos el nombre de la provincia quitando espacios y tíldes y se suscribe al usuario
-    messaging.subscribe_to_topic([token.fcm_client_token], unidecode(current_user.replace(' ', '_')))
+    messaging.subscribe_to_topic([token.fcm_client_token], unidecode(current_user_ldap.replace(' ', '_')))
     messaging.subscribe_to_topic([token.fcm_client_token], 'All')
 
 

@@ -107,7 +107,7 @@ class Building(Base):
     id = Column(TEXT, primary_key=True, index=True)
     abbreviation = Column(TEXT)
     name = Column(TEXT)
-    direction = Column(TEXT, primary_key=True, index=True)
+    address = Column(TEXT, primary_key=True, index=True)
 
 
 class LectureRoom(Base):
@@ -157,7 +157,7 @@ class Lecture(Base):
     __tablename__ = "lecture"
 
     subject_name = Column(TEXT)
-    academic_year = Column(DATE)
+    academic_year = Column(DATE, ForeignKey("academic_year.start_date"))
     degree = Column(TEXT)
 
     subgroup = Column(SMALLINT, primary_key=True, index=True)
@@ -179,12 +179,13 @@ class Lecture(Base):
     # Relationships
     professor = relationship('Professor')
     lecture_room = relationship('LectureRoom')
+    academic_year_data = relationship('AcademicYear')
 
 
 class SubjectEnrollment(Base):
     __tablename__ = "subject_enrollment"
 
-    student_ldap = Column(CHAR(6), ForeignKey("student.ldap"), primary_key=True, index=True)
+    ldap = Column(CHAR(6), ForeignKey("student.ldap"), primary_key=True, index=True)
 
     subject_name = Column(TEXT, primary_key=True, index=True)
     academic_year = Column(DATE, primary_key=True, index=True)
