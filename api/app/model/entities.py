@@ -21,8 +21,11 @@ class Student(Base):
     email = Column(TEXT)
 
     enrolled_degree = Column(TEXT, ForeignKey("degree.name"))
-
     profile_image_url = Column(TEXT, name='profile_image', default="/etzi/images/placeholder.png")
+
+    # Relations
+    subject_enrollments = relationship("SubjectEnrollment", order_by="[SubjectEnrollment.academic_year, SubjectEnrollment.subject_name]")
+    subject_call_attendances = relationship("SubjectCallAttendance", order_by="[SubjectCallAttendance.academic_year, SubjectCallAttendance.subject_name]")
 
 
 class AcademicYear(Base):
@@ -44,6 +47,7 @@ class Subject(Base):
 
     # Relationships
     academic_year = relationship('AcademicYear')
+    # TODO: Add tutorials
 
 
 class SubjectCall(Base):
@@ -75,7 +79,6 @@ class SubjectCallAttendance:
 
     # Relationships
     subject_call = relationship('SubjectCall')
-    student = relationship('Student')
 
 
 class Building:
@@ -105,6 +108,9 @@ class Professor:
     name = Column(VARCHAR(30))
     surname = Column(VARCHAR(40))
 
+    # Relationships
+    tutorials = relationship('Tutorial', back_populates="professor")
+
 
 class Tutorial:
     __tablename__ = "tutorial"
@@ -119,7 +125,7 @@ class Tutorial:
     end_date = Column(TIMESTAMP)
 
     # Relationships
-    professor = relationship('Professor')
+    professor = relationship('Professor', back_populates="tutorials")
     lecture_room = relationship('LectureRoom')
 
 
@@ -160,4 +166,3 @@ class SubjectEnrollment:
 
     # Relationships
     subject = relationship('Subject')
-    student = relationship('Student')
