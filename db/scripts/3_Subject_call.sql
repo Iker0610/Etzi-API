@@ -338,11 +338,3 @@ VALUES ('Software para matemática aplicada', 'Extraordinaria', '2022-06-24 08:3
 INSERT INTO subject_call (subject_name, call_type, exam_date, academic_year, degree)
 VALUES ('Trabajo fin de grado', 'Extraordinaria', '2022-07-02 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
-
--- Buildings
-INSERT INTO building (id, abbreviation, name, direction)
-VALUES ('1', 'EIB/BIE II - I', 'Escuela de ingeniería de Bilbao/ Bilboko ingeniaritza eskola II - I',
-        'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
-INSERT INTO building (id, abbreviation, name, direction)
-VALUES ('2', 'EIB/BIE II - M', 'Escuela de ingeniería de Bilbao/ Bilboko ingeniaritza eskola II - M',
-        'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');

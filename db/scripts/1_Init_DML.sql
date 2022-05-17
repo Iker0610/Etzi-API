@@ -6,16 +6,18 @@ VALUES ('Grado en Ingeniería Informática de Gestión y Sistemas de Informació
 
 --Students
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('987654', 'alguna', 'Sub', 'Woolfer', 'swoolfer001@ikasle.ehu.eus',
+VALUES ('987654', '$2b$12$it1yAsTjOAhORqDfVHhVuORd0Lak7bPA81tquuaieOVrlWYF6iERu', 'Sub', 'Woolfer', 'swoolfer001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('900900', 'ya se verá', 'Rosa', 'Linn', 'rlinn001@ikasle.ehu.eus',
+VALUES ('900900', '$2b$12$sqI9UrJ8kkXu72bC0A3rmuMiaeMCa9r3zP17A9Zew0QByVlnmhZjy', 'Rosa', 'Linn', 'rlinn001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('123456', 'ya se verá', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
+VALUES ('123456', '$2b$12$GGXnub988UpgdPTVR4XFLeyh7wWMjFs7Dle6aZtdjcVzkJeSQWG5C', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+
+
 --Academic year
 INSERT INTO academic_year (start_date, end_date)
 VALUES (TO_DATE('01-09-2021', 'DD-MM-YYYY'), TO_DATE('31-07-2022', 'DD-MM-YYYY'));
@@ -28,6 +30,17 @@ VALUES (TO_DATE('01-09-2019', 'DD-MM-YYYY'), TO_DATE('31-07-2020', 'DD-MM-YYYY')
 
 INSERT INTO academic_year (start_date, end_date)
 VALUES (TO_DATE('01-09-2018', 'DD-MM-YYYY'), TO_DATE('31-07-2019', 'DD-MM-YYYY'));
+
+
+
+-- Buildings
+INSERT INTO building (id, abbreviation, name, direction)
+VALUES ('1', 'i' ,'EIB/BIE II - I',
+        'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
+INSERT INTO building (id, abbreviation, name, direction)
+VALUES ('2','m', 'EIB/BIE II - M', 'Escuela de ingeniería de Bilbao/ Bilboko ingeniaritza eskola II - M',
+        'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
+
 
 -- Lecture rooms
 INSERT INTO lecture_room (number, floor, building)
