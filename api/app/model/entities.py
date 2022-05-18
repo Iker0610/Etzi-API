@@ -122,7 +122,7 @@ class Professor(Base):
     surname = Column(VARCHAR(40))
 
     # Relationships
-    tutorials = relationship('Tutorial', back_populates="professor")
+    tutorials = relationship('Tutorial', back_populates="professor", order_by="Tutorial.start_date")
 
 
 class Tutorial(Base):
@@ -142,7 +142,7 @@ class Tutorial(Base):
     )
 
     # Relationships
-    professor = relationship('Professor', back_populates="tutorials")
+    professor = relationship('Professor', back_populates="tutorials", order_by="[Professor.name, Professor.surname, Professor.email]")
     lecture_room = relationship('LectureRoom')
 
 
