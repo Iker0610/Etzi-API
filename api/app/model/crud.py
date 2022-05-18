@@ -2,71 +2,82 @@ from datetime import date
 
 from sqlalchemy import and_, or_, func
 from sqlalchemy.engine import row
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, contains_eager
 
-from . import entities
+from .entities import *
 from .. import api_models
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 100) -> list[row]:
-    return db.query(entities.Student.ldap, entities.Student.password).offset(skip).limit(limit).all()
+    return db.query(Student.ldap, Student.password).offset(skip).limit(limit).all()
 
 
 # --------------------------------------------------------------------
 
 
 def get_user_ldap(db: Session, ldap: str) -> str | None:
-    return db.query(entities.Student.ldap).filter(entities.Student.ldap == ldap).first()
+    return db.query(Student.ldap).filter(Student.ldap == ldap).first()
 
 
 def get_user_password(db: Session, ldap: str) -> bytes | None:
-    result = db.query(entities.Student.password).filter(entities.Student.ldap == ldap).first()
+    result = db.query(Student.password).filter(Student.ldap == ldap).first()
     return result.password if result else result
 
 
-def get_student_data(db: Session, ldap: str) -> entities.Student | None:
-    return db.query(entities.Student).filter(entities.Student.ldap == ldap).first()
+def get_student_data(db: Session, ldap: str) -> Student | None:
+    return db.query(Student).filter(Student.ldap == ldap).first()
 
 
 # --------------------------------------------------------------------
 
-def get_student_timetable(db: Session, ldap: str) -> list[entities.Lecture]:
-    return db.query(entities.Lecture) \
-        .select_from(entities.Student) \
-        .filter(entities.Student.ldap == ldap) \
-        .join(entities.Student.subject_enrollments) \
-        .join(entities.Subject) \
-        .join(entities.AcademicYear) \
-        .filter(and_(entities.Subject.academic_year.has(entities.AcademicYear.start_date <= date.today()), entities.Subject.academic_year.has(date.today() <= entities.AcademicYear.end_date))) \
-        .join(entities.Lecture) \
-        .filter(or_(entities.Lecture.subgroup == -1, entities.SubjectEnrollment.subgroup == entities.Lecture.subgroup)) \
-        .order_by(entities.Lecture.start_date).all()
-
-
-def get_student_record(db: Session, ldap: str):
-    pass
+def get_student_timetable(db: Session, ldap: str) -> list[Lecture]:
+    return db.query(Lecture) \
+        .select_from(Student) \
+        .filter(Student.ldap == ldap) \
+        .join(Student.subject_enrollments) \
+        .join(Subject) \
+        .join(AcademicYear) \
+        .filter(and_(Subject.academic_year.has(AcademicYear.start_date <= date.today()), Subject.academic_year.has(date.today() <= AcademicYear.end_date))) \
+        .join(Lecture) \
+        .filter(or_(Lecture.subgroup == -1, SubjectEnrollment.subgroup == Lecture.subgroup)) \
+        .order_by(Lecture.start_date).all()
 
 
 def get_student_tutorials(db: Session, ldap: str):
-    return db.query(entities.Subject) \
-        .select_from(entities.Student) \
-        .filter(entities.Student.ldap == ldap) \
-        .join(entities.Student.subject_enrollments) \
-        .join(entities.Subject) \
-        .join(entities.AcademicYear) \
-        .filter(and_(entities.Subject.academic_year.has(entities.AcademicYear.start_date <= date.today()), entities.Subject.academic_year.has(date.today() <= entities.AcademicYear.end_date))) \
-        .filter(date.today() <= func.DATE(entities.Tutorial.start_date)) \
-        .order_by(entities.Subject.name).all()
+    return db.query(Subject) \
+        .select_from(Student) \
+        .filter(Student.ldap == ldap) \
+        .join(Student.subject_enrollments) \
+        .join(Subject) \
+        .join(AcademicYear) \
+        .filter(and_(Subject.academic_year.has(AcademicYear.start_date <= date.today()), Subject.academic_year.has(date.today() <= AcademicYear.end_date))) \
+        .filter(date.today() <= func.DATE(Tutorial.start_date)) \
+        .order_by(Subject.name).all()
+
+
+def get_student_record(db: Session, ldap: str):
+    return db.query(SubjectEnrollment) \
+        .select_from(Student) \
+        .filter(Student.ldap == ldap) \
+        .outerjoin(Student.subject_enrollments) \
+        .outerjoin(SubjectEnrollment.subject_calls) \
+        .outerjoin(SubjectCall.subject_call_attendances) \
+        .filter(SubjectCallAttendance.student_ldap == ldap) \
+        .options(contains_eager(SubjectEnrollment.subject_calls, SubjectCall.subject_call_attendances)) \
+        .order_by(SubjectEnrollment.academic_year) \
+        .order_by(SubjectEnrollment.subject_name) \
+        .order_by(SubjectCall.exam_date).all()
 
 
 # --------------------------------------------------------------------
 
+
 def get_user_profile_image_url(db: Session, ldap: str) -> str | None:
-    result = db.query(entities.Student.profile_image_url).filter(entities.Student.ldap == ldap).first()
+    result = db.query(Student.profile_image_url).filter(Student.ldap == ldap).first()
     return result.profile_image_url if result else result
 
 
-def set_user_profile_image_url(db: Session, user: str | entities.Student, url: str) -> bool:
+def set_user_profile_image_url(db: Session, user: str | Student, url: str) -> bool:
     if isinstance(user, str):
         user = get_student_data(db, user)
 
@@ -80,11 +91,11 @@ def set_user_profile_image_url(db: Session, user: str | entities.Student, url: s
 
 # --------------------------------------------------------------------
 
-def create_user(db: Session, user: api_models.UserAuth) -> entities.Student | None:
+def create_user(db: Session, user: api_models.UserAuth) -> Student | None:
     if get_user_ldap(db, ldap=user.ldap):
         return None
     else:
-        db_user = entities.Student(ldap=user.ldap, password=user.hashed_password())
+        db_user = Student(ldap=user.ldap, password=user.hashed_password())
         db.add(db_user)
         db.commit()
         db.refresh(db_user)

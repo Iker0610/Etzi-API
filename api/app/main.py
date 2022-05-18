@@ -11,7 +11,7 @@ from firebase_admin import credentials, messaging
 from sqlalchemy.orm import Session
 from unidecode import unidecode
 
-from .api_models import Message, FirebaseClientToken, StudentData, Lecture, SubjectWithTutorials
+from .api_models import Message, FirebaseClientToken, StudentData, Lecture, SubjectWithTutorials, SubjectEnrollment
 from .auth_utils import get_verified_current_user, create_access_token, CREDENTIALS_EXCEPTION, create_refresh_token, TokenResponse, decode_token, OAuth2RefreshTokenForm
 from .model import crud
 from .model.database import get_db
@@ -147,6 +147,11 @@ async def get_timetable(db: Session = Depends(get_db), current_user_ldap: str = 
 @app.get("/student/tutorials", response_model=list[SubjectWithTutorials], status_code=status.HTTP_200_OK, tags=["Student"])
 async def get_timetable(db: Session = Depends(get_db), current_user_ldap: str = Depends(get_verified_current_user)):
     return crud.get_student_tutorials(db, current_user_ldap)
+
+
+@app.get("/student/record", response_model=list[SubjectEnrollment], status_code=status.HTTP_200_OK, tags=["Student"])
+async def get_record(db: Session = Depends(get_db), current_user_ldap: str = Depends(get_verified_current_user)):
+    return crud.get_student_record(db, current_user_ldap)
 
 
 # ---------------------------------------------------------

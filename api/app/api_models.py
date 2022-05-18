@@ -108,6 +108,36 @@ class Lecture(OrmBase):
 
 # --------------------------------------------------------------------
 
+class Subject(OrmBase):
+    name: str
+    academic_year_start: date
+    degree: str
+    type: str
+    credits: int
+    course: int
+
+
+class SubjectCallAttendance(OrmBase):
+    grade: str
+    distinction: bool
+    provisional: bool
+
+
+class SubjectCall(OrmBase):
+    call_type: str
+    exam_date: datetime
+    subject_call_attendances: list[SubjectCallAttendance]
+
+
+class SubjectEnrollment(OrmBase):
+    subject: Subject
+    subgroup: int
+    subject_calls: list[SubjectCall]
+
+
+# --------------------------------------------------------------------
+
+
 # FCM
 class Message(BaseModel):
     title: str

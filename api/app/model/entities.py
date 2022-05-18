@@ -25,7 +25,6 @@ class Student(Base):
 
     # Relations
     subject_enrollments = relationship("SubjectEnrollment", order_by="[SubjectEnrollment.academic_year, SubjectEnrollment.subject_name]")
-    subject_call_attendances = relationship("SubjectCallAttendance", order_by="[SubjectCallAttendance.academic_year, SubjectCallAttendance.subject_name]")
 
 
 class AcademicYear(Base):
@@ -54,7 +53,7 @@ class Subject(Base):
                     "Subject.academic_year_start == Lecture.academic_year, "
                     "Subject.degree == Lecture.degree)",
         secondaryjoin="Lecture.professor_email == Professor.email",
-        secondary="join(Lecture, Professor, Lecture.professor_email == Professor.email)"
+        secondary="outerjoin(Lecture, Professor)"
     )
 
 
@@ -73,7 +72,7 @@ class SubjectCall(Base):
     )
 
     # Relationships
-    subject = relationship('Subject')
+    subject_call_attendances = relationship('SubjectCallAttendance', lazy='joined')
 
 
 class SubjectCallAttendance(Base):
@@ -91,11 +90,8 @@ class SubjectCallAttendance(Base):
     provisional = Column(BOOLEAN, default=True)
 
     __table_args__ = (
-        ForeignKeyConstraint(("subject_name", "academic_year", "degree"), ["subject_call.subject_name", "subject_call.academic_year", "subject_call.degree"]),
+        ForeignKeyConstraint(("subject_name", "academic_year", "degree", "call_type"), ["subject_call.subject_name", "subject_call.academic_year", "subject_call.degree", "subject_call.call_type"]),
     )
-
-    # Relationships
-    subject_call = relationship('SubjectCall')
 
 
 class Building(Base):
@@ -195,4 +191,16 @@ class SubjectEnrollment(Base):
     )
 
     # Relationships
-    subject = relationship('Subject')
+    subject = relationship("Subject")
+    subject_calls = relationship(
+        'SubjectCall',
+        primaryjoin="and_(Subject.name == SubjectEnrollment.subject_name, "
+                    "Subject.academic_year_start == SubjectEnrollment.academic_year, "
+                    "Subject.degree == SubjectEnrollment.degree)",
+
+        secondaryjoin="and_(Subject.name == SubjectCall.subject_name, "
+                      "Subject.academic_year_start == SubjectCall.academic_year, "
+                      "Subject.degree == SubjectCall.degree)",
+
+        secondary="outerjoin(Subject, SubjectCall)",
+    )
