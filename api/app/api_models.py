@@ -71,18 +71,23 @@ class Professor(OrmBase):
     surname: str
 
 
-class TutorialWithoutProfessor(OrmBase):
+class Tutorial(OrmBase):
     lecture_room: LectureRoom
     start_date: datetime
     end_date: datetime
 
 
-class Tutorial(TutorialWithoutProfessor):
-    professor: Professor
+# class TutorialWithProfessor(Tutorial):
+#     professor: Professor
 
 
 class ProfessorWithTutorials(Professor):
-    tutorials: Tutorial
+    tutorials: list[Tutorial]
+
+
+class SubjectWithTutorials(OrmBase):
+    name: str
+    professors: list[ProfessorWithTutorials]
 
 
 # --------------------------------------------------------------------

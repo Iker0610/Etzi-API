@@ -57,9 +57,6 @@ class Subject(Base):
         secondary="join(Lecture, Professor, Lecture.professor_email == Professor.email)"
     )
 
-    def as_dict(self):
-        return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
-
 
 class SubjectCall(Base):
     __tablename__ = "subject_call"

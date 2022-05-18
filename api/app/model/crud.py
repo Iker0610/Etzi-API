@@ -1,3 +1,6 @@
+from datetime import date
+
+from sqlalchemy import and_, or_, func
 from sqlalchemy.engine import row
 from sqlalchemy.orm import Session
 
@@ -30,12 +33,30 @@ def get_student_data(db: Session, ldap: str) -> entities.Student | None:
 def get_student_timetable(db: Session, ldap: str) -> list[entities.Lecture]:
     return db.query(entities.Lecture) \
         .select_from(entities.Student) \
+        .filter(entities.Student.ldap == ldap) \
         .join(entities.Student.subject_enrollments) \
         .join(entities.Subject) \
+        .join(entities.AcademicYear) \
+        .filter(and_(entities.Subject.academic_year.has(entities.AcademicYear.start_date <= date.today()), entities.Subject.academic_year.has(date.today() <= entities.AcademicYear.end_date))) \
         .join(entities.Lecture) \
-        .filter(entities.Student.ldap == ldap) \
-        .filter(entities.Lecture.subgroup == -1 or entities.SubjectEnrollment.subgroup == entities.Lecture.subgroup) \
+        .filter(or_(entities.Lecture.subgroup == -1, entities.SubjectEnrollment.subgroup == entities.Lecture.subgroup)) \
         .order_by(entities.Lecture.start_date).all()
+
+
+def get_student_record(db: Session, ldap: str):
+    pass
+
+
+def get_student_tutorials(db: Session, ldap: str):
+    return db.query(entities.Subject) \
+        .select_from(entities.Student) \
+        .filter(entities.Student.ldap == ldap) \
+        .join(entities.Student.subject_enrollments) \
+        .join(entities.Subject) \
+        .join(entities.AcademicYear) \
+        .filter(and_(entities.Subject.academic_year.has(entities.AcademicYear.start_date <= date.today()), entities.Subject.academic_year.has(date.today() <= entities.AcademicYear.end_date))) \
+        .filter(date.today() <= func.DATE(entities.Tutorial.start_date)) \
+        .order_by(entities.Subject.name).all()
 
 
 # --------------------------------------------------------------------
