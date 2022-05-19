@@ -17,6 +17,10 @@ INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
 VALUES ('123456', '$2b$12$GGXnub988UpgdPTVR4XFLeyh7wWMjFs7Dle6aZtdjcVzkJeSQWG5C', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
+INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
+VALUES ('915018', '$2b$12$i5q1V3D46r5H1RZsKGbWueLvjGZqwfiVr55rL0hN2hcrFfdui486y', 'Iria', 'San Miguel', 'isanmiguel008@ikasle.ehu.eus',
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
+
 
 --Academic year
 INSERT INTO academic_year (start_date, end_date)

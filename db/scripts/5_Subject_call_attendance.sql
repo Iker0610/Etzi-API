@@ -123,6 +123,39 @@ VALUES ('123456', 'Programación básica', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '5.7', false, false);
 
 INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Principios de Diseño de Sistemas Digitales', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '5.5', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Programación modular y orientación a objetos', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '3.4', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Programación modular y orientación a objetos', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '8.9', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Metodología de la programación', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '1.2', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Metodología de la programación', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '5.3', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Matemática Discreta', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '6.7', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Fundamentos de Tecnología de Computadores', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '5.9', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Programación básica', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '5.7', false, false);
+
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
 VALUES ('987654', 'Economía y administración de empresas', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '7.0', false, false);
 
@@ -231,6 +264,44 @@ VALUES ('123456', 'Introducción a las redes de computadores', TO_DATE('01-09-20
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '5.1', false, false);
 
 INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Introducción a los sistemas operativos', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '2.1', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Introducción a los sistemas operativos', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '5.8', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Arquitectura de computadores', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '6.4', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Lenguajes, computación y sistemas inteligentes', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '4.9', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Lenguajes, computación y sistemas inteligentes', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '6.0', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Investigación operativa', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '1.3', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Investigación operativa', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '9.3', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Introducción a las redes de computadores', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '1.2', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Introducción a las redes de computadores', TO_DATE('01-09-2019', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '5.1', false, false);
+
+
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
 VALUES ('987654', 'Diseño de bases de datos', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '5.2', false, false);
 
@@ -311,6 +382,30 @@ VALUES ('123456', 'Organización de la producción', TO_DATE('01-09-2020', 'DD-M
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '9.8', true, false);
 
 INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Administración de bases de datos', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '5.8', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Diseño de bases de datos', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '1.5', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Diseño de bases de datos', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '6.0', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Software de gestión de empresa', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '7.2', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Sistemas de Gestión de seguridad de sistemas de información', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '8.1', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Organización de la producción', TO_DATE('01-09-2020', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '9.8', true, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
 VALUES ('987654', 'Administración de sistemas', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '4.2', false, false);
 
@@ -388,5 +483,29 @@ VALUES ('123456', 'Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-
 
 INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction)
 VALUES ('123456', 'English for information technology', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '8.3', false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Norma y uso de la lengua vasca', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '2.8', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction)
+VALUES ('915018', 'Norma y uso de la lengua vasca', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '7.3', false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Desarrollo avanzado de software', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '0.4', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Desarrollo avanzado de software', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Extraordinaria', '8.6', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('915018', 'Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '9.9', true, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction)
+VALUES ('915018', 'English for information technology', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '8.3', false);
 
