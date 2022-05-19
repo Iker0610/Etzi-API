@@ -88,6 +88,45 @@ INSERT INTO lecture_room (number, floor, building)
 VALUES (12, 1, 2);
 INSERT INTO lecture_room (number, floor, building)
 VALUES (23, 1, 2);
+
+INSERT INTO lecture_room (number, floor, building)
+VALUES (10, 3, 3);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (12, 3, 3);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (20, 3, 3); -- Iker Sobrón
+INSERT INTO lecture_room (number, floor, building)
+VALUES (10, 2, 3);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (12, 2, 3);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (23, 2, 3); -- Mikel Villamañe
+INSERT INTO lecture_room (number, floor, building)
+VALUES (10, 1, 3);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (12, 1, 3);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (23, 1, 3);
+
+INSERT INTO lecture_room (number, floor, building)
+VALUES (10, 3, 4);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (12, 3, 4);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (20, 3, 4); -- Iker Sobrón
+INSERT INTO lecture_room (number, floor, building)
+VALUES (10, 2, 4);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (12, 2, 4);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (23, 2, 4); -- Mikel Villamañe
+INSERT INTO lecture_room (number, floor, building)
+VALUES (10, 1, 4);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (12, 1, 4);
+INSERT INTO lecture_room (number, floor, building)
+VALUES (23, 1, 4);
+
 -- María Luz Álvarez
 
 -- Profesors
