@@ -40,6 +40,12 @@ INSERT INTO building (id, abbreviation, name, address)
 VALUES ('2', 'M', 'EIB/BIE II - M', 'Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Biscay');
 
 
+INSERT INTO building (id, abbreviation, name, address)
+VALUES ('3', 'B', 'EIB/BIE I - B', 'Escuela de Ingeniería de Bilbao, Plaza Ingeniero Torres Quevedo, 1, 48013 Bilbao, Biscay');
+
+INSERT INTO building (id, abbreviation, name, address)
+VALUES ('4', 'D', 'EIB/BIE I - D', 'Escuela de Ingeniería de Bilbao, Ingeniero Torres Quevedo Plaza, 1, 48013 Bilbao, Biscay');
+
 -- Lecture rooms
 INSERT INTO lecture_room (number, floor, building)
 VALUES (10, 3, 1);
