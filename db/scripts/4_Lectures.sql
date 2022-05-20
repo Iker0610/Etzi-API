@@ -2375,7 +2375,7 @@ INSERT INTO lecture (subject_name, academic_year, degree, subgroup, professor_em
 VALUES ('Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', '1', 'marialuz.alvarez@ehu.eus', 12, 2, '2', '2022-05-19 13:00:00', '2022-05-19 14:00:00');
 
 INSERT INTO lecture (subject_name, academic_year, degree, subgroup, professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', '-1', 'marialuz.alvarez@ehu.eus', 10, 3, '4', '2022-05-25 09:00:00', '2022-05-25 11:00:00');
+VALUES ('Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', '-1', 'marialuz.alvarez@ehu.eus', 10, 3, '3', '2022-05-25 09:00:00', '2022-05-25 11:00:00');
 
 INSERT INTO lecture (subject_name, academic_year, degree, subgroup, professor_email, room_number, room_floor, room_building, start_date, end_date)
 VALUES ('Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-MM-YYYY'), 'Grado en Ingeniería Informática de Gestión y Sistemas de Información', '-1', 'marialuz.alvarez@ehu.eus', 10, 3, '2', '2022-05-26 11:00:00', '2022-05-26 12:00:00');
