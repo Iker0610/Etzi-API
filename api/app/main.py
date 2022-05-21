@@ -174,7 +174,7 @@ async def get_user_profile_image(current_user_ldap: str = Depends(get_verified_c
          status_code=status.HTTP_204_NO_CONTENT,
          responses={404: {"description": "Student doesn't exists."}, 400: {"description": f"File is not a valid image file. Valid types: {', '.join(VALID_IMAGE_MIME_TYPES)}"}})
 async def set_user_profile_image(file: UploadFile, current_user_ldap: str = Depends(get_verified_current_user), db: Session = Depends(get_db)):
-    if not (user := crud.get_user_ldap(db, current_user_ldap)):
+    if not (user := crud.get_student_data(db, current_user_ldap)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student doesn't exists.")
 
     if file.content_type not in VALID_IMAGE_MIME_TYPES:
