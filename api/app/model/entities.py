@@ -53,7 +53,7 @@ class Subject(Base):
                     "Subject.academic_year_start == Lecture.academic_year, "
                     "Subject.degree == Lecture.degree)",
         secondaryjoin="Lecture.professor_email == Professor.email",
-        secondary="outerjoin(Lecture, Professor)"
+        secondary="join(Lecture, Professor)"
     )
 
 

@@ -61,8 +61,7 @@ def get_student_record(db: Session, ldap: str):
         .filter(Student.ldap == ldap) \
         .outerjoin(Student.subject_enrollments) \
         .outerjoin(SubjectEnrollment.subject_calls) \
-        .outerjoin(SubjectCall.subject_call_attendances) \
-        .filter(SubjectCallAttendance.student_ldap == ldap) \
+        .outerjoin(SubjectCallAttendance, and_(SubjectCall.subject_call_attendances, SubjectCallAttendance.student_ldap == ldap)) \
         .options(contains_eager(SubjectEnrollment.subject_calls, SubjectCall.subject_call_attendances)) \
         .order_by(SubjectEnrollment.academic_year) \
         .order_by(SubjectEnrollment.subject_name) \

@@ -118,6 +118,7 @@ class Subject(OrmBase):
 
 
 class SubjectCallAttendance(OrmBase):
+    # student_ldap: str
     grade: str
     distinction: bool
     provisional: bool
