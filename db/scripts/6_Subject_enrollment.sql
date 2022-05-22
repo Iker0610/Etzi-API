@@ -423,7 +423,7 @@ VALUES ('123456', 'Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO subject_enrollment (ldap, subject_name, academic_year, degree, subgroup)
-VALUES ('123456', 'Robótica', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+VALUES ('123456', 'Minería de datos', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO subject_enrollment (ldap, subject_name, academic_year, degree, subgroup)
@@ -451,7 +451,7 @@ VALUES ('915018', 'Servicios telemáticos avanzados', TO_DATE('01-09-2021', 'DD-
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO subject_enrollment (ldap, subject_name, academic_year, degree, subgroup)
-VALUES ('915018', 'Robótica', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+VALUES ('915018', 'Minería de datos', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 1);
 
 INSERT INTO subject_enrollment (ldap, subject_name, academic_year, degree, subgroup)

@@ -274,7 +274,7 @@ VALUES ('Trabajo fin de grado', 'Ordinaria', '2022-06-02 08:30:00', TO_DATE('01-
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 -- Extraordinaria
 INSERT INTO subject_call (subject_name, call_type, exam_date, academic_year, degree)
-VALUES ('Minería de datos', 'Extraordinaria', '2022-06-24 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+VALUES ('Minería de datos', 'Extraordinaria', '2022-01-19 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 INSERT INTO subject_call (subject_name, call_type, exam_date, academic_year, degree)
 VALUES ('Administración de sistemas', 'Extraordinaria', '2022-06-23 08:30:00', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
