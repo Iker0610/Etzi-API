@@ -1,4 +1,8 @@
 INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
+VALUES ('123456', 'Desarrollo de aplicaciones web enriquecidas', TO_DATE('01-09-2021', 'DD-MM-YYYY'),
+        'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '', false, false);
+
+INSERT INTO subject_call_attendance (student_ldap, subject_name, academic_year, degree, call_type, grade, distinction, provisional)
 VALUES ('987654', 'Fundamentos de Tecnología de Computadores', TO_DATE('01-09-2018', 'DD-MM-YYYY'),
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información', 'Ordinaria', '0.6', false, false);
 
