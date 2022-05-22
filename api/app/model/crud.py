@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session, contains_eager
 
 from .entities import *
 from .. import api_models
-
+from .. import main
 
 def get_users(db: Session, skip: int = 0, limit: int = 100) -> list[row]:
     return db.query(Student.ldap, Student.password).offset(skip).limit(limit).all()
@@ -40,7 +40,7 @@ def update_student_call_attendance(db: Session, provisional_grade: api_models.Pr
         SubjectCallAttendance.call_type == provisional_grade.call_type
     )).first()
 
-    if not result or result.grade: return False
+    if not result: return None
 
     result.grade = str(provisional_grade.grade)
     result.distinction = provisional_grade.distinction
@@ -49,6 +49,7 @@ def update_student_call_attendance(db: Session, provisional_grade: api_models.Pr
     try:
         db.commit()
         return True
+
     except SQLAlchemyError:
         return False
 

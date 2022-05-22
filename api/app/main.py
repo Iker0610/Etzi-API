@@ -157,20 +157,26 @@ async def get_record(db: Session = Depends(get_db), current_user_ldap: str = Dep
 @app.put("/grades/provisional", response_model=None, status_code=status.HTTP_202_ACCEPTED, tags=["Grades"])
 async def get_record(provisional_grade: ProvisionalGradePetition, db: Session = Depends(get_db)):
     if provisional_grade.auth_token != "192837465": raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Authentication token not valid.")
-    if not update_student_call_attendance(db, provisional_grade.provisional_grade):
+
+    if (result := update_student_call_attendance(db, provisional_grade.provisional_grade)) is None: raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="The given grade could not be submitted. Check grade data.")
+    if not result:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="The given grade could not be submitted. Check grade data.")
     else:
         messaging.send(
-            messaging.AndroidNotification(
-                channel_id= "PROVISIONAL_GRADES",
-                title_loc_key="provisional_grade_notification_title",
-                body_loc_key="provisional_grade_notification_text",
-                body_loc_args=[provisional_grade.provisional_grade.subject_name],
+            messaging.Message(
+                topic=provisional_grade.provisional_grade.student_ldap,
+                android=messaging.AndroidConfig(
+                    notification=messaging.AndroidNotification(
+                        channel_id="PROVISIONAL_GRADES",
+                        title_loc_key="provisional_grade_notification_title",
+                        body_loc_key="provisional_grade_notification_text",
+                        body_loc_args=[provisional_grade.provisional_grade.subject_name],
+                    )
+                )
             )
         )
 
-
-# ---------------------------------------------------------
+        # ---------------------------------------------------------
 
 
 @app.get("/profile/image", tags=["Profile"],
