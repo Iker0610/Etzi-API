@@ -2,7 +2,6 @@ from mimetypes import guess_extension
 from os import environ
 from pathlib import Path
 
-import bcrypt
 import firebase_admin
 from fastapi import Depends, FastAPI, HTTPException, status, UploadFile
 from fastapi.responses import FileResponse, RedirectResponse
@@ -11,9 +10,10 @@ from firebase_admin import credentials, messaging
 from sqlalchemy.orm import Session
 from unidecode import unidecode
 
-from .api_models import Message, FirebaseClientToken, StudentData, Lecture, SubjectWithTutorials, SubjectEnrollment
+from .api_models import *
 from .auth_utils import get_verified_current_user, create_access_token, CREDENTIALS_EXCEPTION, create_refresh_token, TokenResponse, decode_token, OAuth2RefreshTokenForm
 from .model import crud
+from .model.crud import update_student_call_attendance
 from .model.database import get_db
 
 VALID_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp']
@@ -152,6 +152,22 @@ async def get_timetable(db: Session = Depends(get_db), current_user_ldap: str = 
 @app.get("/student/record", response_model=list[SubjectEnrollment], status_code=status.HTTP_200_OK, tags=["Student"])
 async def get_record(db: Session = Depends(get_db), current_user_ldap: str = Depends(get_verified_current_user)):
     return crud.get_student_record(db, current_user_ldap)
+
+
+@app.put("/grades/provisional", response_model=None, status_code=status.HTTP_202_ACCEPTED, tags=["Grades"])
+async def get_record(provisional_grade: ProvisionalGradePetition, db: Session = Depends(get_db)):
+    if provisional_grade.auth_token != "192837465": raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Authentication token not valid.")
+    if not update_student_call_attendance(db, provisional_grade.provisional_grade):
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="The given grade could not be submitted. Check grade data.")
+    else:
+        messaging.send(
+            messaging.AndroidNotification(
+                channel_id= "PROVISIONAL_GRADES",
+                title_loc_key="provisional_grade_notification_title",
+                body_loc_key="provisional_grade_notification_text",
+                body_loc_args=[provisional_grade.provisional_grade.subject_name],
+            )
+        )
 
 
 # ---------------------------------------------------------

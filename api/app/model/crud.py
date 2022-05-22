@@ -2,6 +2,7 @@ from datetime import date
 
 from sqlalchemy import and_, or_, func
 from sqlalchemy.engine import row
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, contains_eager
 
 from .entities import *
@@ -26,6 +27,30 @@ def get_user_password(db: Session, ldap: str) -> bytes | None:
 
 def get_student_data(db: Session, ldap: str) -> Student | None:
     return db.query(Student).filter(Student.ldap == ldap).first()
+
+
+# --------------------------------------------------------------------
+
+def update_student_call_attendance(db: Session, provisional_grade: api_models.ProvisionalGrade) -> bool:
+    result: SubjectCallAttendance = db.query(SubjectCallAttendance).filter(and_(
+        SubjectCallAttendance.student_ldap == provisional_grade.student_ldap,
+        SubjectCallAttendance.subject_name == provisional_grade.subject_name,
+        SubjectCallAttendance.academic_year == provisional_grade.academic_year,
+        SubjectCallAttendance.degree == provisional_grade.degree,
+        SubjectCallAttendance.call_type == provisional_grade.call_type
+    )).first()
+
+    if not result or result.grade: return False
+
+    result.grade = str(provisional_grade.grade)
+    result.distinction = provisional_grade.distinction
+    result.provisional = True
+
+    try:
+        db.commit()
+        return True
+    except SQLAlchemyError:
+        return False
 
 
 # --------------------------------------------------------------------

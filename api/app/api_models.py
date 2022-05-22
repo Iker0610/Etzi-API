@@ -138,6 +138,24 @@ class SubjectEnrollment(OrmBase):
 
 # --------------------------------------------------------------------
 
+class ProvisionalGrade(BaseModel):
+    student_ldap: str
+    subject_name: str
+    academic_year: date
+    degree: str
+    call_type: str
+
+    grade: float
+    distinction: bool
+
+
+class ProvisionalGradePetition(BaseModel):
+    auth_token: str
+    provisional_grade: ProvisionalGrade
+
+
+# --------------------------------------------------------------------
+
 
 # FCM
 class Message(BaseModel):
