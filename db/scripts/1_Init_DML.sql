@@ -14,11 +14,11 @@ VALUES ('900900', '$2b$12$sqI9UrJ8kkXu72bC0A3rmuMiaeMCa9r3zP17A9Zew0QByVlnmhZjy'
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('123456', '$2b$12$GGXnub988UpgdPTVR4XFLeyh7wWMjFs7Dle6aZtdjcVzkJeSQWG5C', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
+VALUES ('123456', '$2b$12$GGXnub988UpgdPTVR4XFLeyh7wWMjFs7Dle6aZtdjcVzkJeSQWG5C', 'Lisa', 'Bean', 'lbean426@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 INSERT INTO student (ldap, password, name, surname, email, enrolled_degree)
-VALUES ('915018', '$2b$12$i5q1V3D46r5H1RZsKGbWueLvjGZqwfiVr55rL0hN2hcrFfdui486y', 'Lisa', 'Bean', 'lbean426@ikasle.ehu.eus',
+VALUES ('915018', '$2b$12$i5q1V3D46r5H1RZsKGbWueLvjGZqwfiVr55rL0hN2hcrFfdui486y', 'Citi', 'Zeni', 'czeni001@ikasle.ehu.eus',
         'Grado en Ingeniería Informática de Gestión y Sistemas de Información');
 
 
@@ -199,4 +199,3 @@ INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, s
 VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2024-06-01 15:00:00', '2024-05-01 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
 VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2024-06-06 16:00:00', '2024-06-06 18:00:00');
-
