@@ -24,16 +24,16 @@ VALUES ('915018', '$2b$12$i5q1V3D46r5H1RZsKGbWueLvjGZqwfiVr55rL0hN2hcrFfdui486y'
 
 --Academic year
 INSERT INTO academic_year (start_date, end_date)
-VALUES (TO_DATE('01-09-2023', 'DD-MM-YYYY'), TO_DATE('28-07-2024', 'DD-MM-YYYY'));
+VALUES (TO_DATE('01-09-2021', 'DD-MM-YYYY'), TO_DATE('31-07-2022', 'DD-MM-YYYY'));
 
 INSERT INTO academic_year (start_date, end_date)
-VALUES (TO_DATE('01-09-2022', 'DD-MM-YYYY'), TO_DATE('29-07-2023', 'DD-MM-YYYY'));
+VALUES (TO_DATE('01-09-2020', 'DD-MM-YYYY'), TO_DATE('31-07-2021', 'DD-MM-YYYY'));
 
 INSERT INTO academic_year (start_date, end_date)
-VALUES (TO_DATE('01-09-2021', 'DD-MM-YYYY'), TO_DATE('29-07-2022', 'DD-MM-YYYY'));
+VALUES (TO_DATE('01-09-2019', 'DD-MM-YYYY'), TO_DATE('31-07-2020', 'DD-MM-YYYY'));
 
 INSERT INTO academic_year (start_date, end_date)
-VALUES (TO_DATE('01-09-2020', 'DD-MM-YYYY'), TO_DATE('28-07-2021', 'DD-MM-YYYY'));
+VALUES (TO_DATE('01-09-2018', 'DD-MM-YYYY'), TO_DATE('31-07-2019', 'DD-MM-YYYY'));
 
 
 -- Buildings
@@ -147,56 +147,56 @@ VALUES ('María Luz', 'Álvarez', 'marialuz.alvarez@ehu.eus');
 -- Tutorials
 -- Alicia
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2024-05-27 15:00:00', '2024-05-27 17:00:00');
+VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2022-05-30 15:00:00', '2022-05-30 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2024-05-30 16:00:00', '2024-05-30 18:00:00');
+VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2022-06-02 16:00:00', '2022-06-02 18:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2024-06-01 15:00:00', '2024-05-01 17:00:00');
+VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2022-06-04 15:00:00', '2022-05-04 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2024-06-06 16:00:00', '2024-06-06 18:00:00');
+VALUES ('alicia.perez@ehu.eus', 23, 2, 1, '2022-06-09 16:00:00', '2022-06-09 18:00:00');
 -- Iker
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2024-05-24 11:00:00', '2024-05-24 14:00:00');
+VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2022-05-27 11:00:00', '2022-05-27 14:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2024-05-29 11:00:00', '2024-05-31 14:00:00');
+VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2022-06-01 11:00:00', '2022-06-03 14:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2024-05-31 11:00:00', '2024-05-31 14:00:00');
+VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2022-06-03 11:00:00', '2022-06-03 14:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2024-06-06 11:00:00', '2024-06-06 14:00:00');
+VALUES ('iker.sobron@ehu.eus', 20, 3, 2, '2022-06-09 11:00:00', '2022-06-09 14:00:00');
 -- Mikel
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2024-05-27 15:00:00', '2024-05-27 17:00:00');
+VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2022-05-30 15:00:00', '2022-05-30 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2024-05-30 16:00:00', '2024-05-30 18:00:00');
+VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2022-06-02 16:00:00', '2022-06-02 18:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2024-06-01 15:00:00', '2024-05-01 17:00:00');
+VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2022-06-04 15:00:00', '2022-05-04 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2024-06-06 16:00:00', '2024-06-06 18:00:00');
+VALUES ('mikel.villamane@ehu.eus', 23, 2, 2, '2022-06-09 16:00:00', '2022-06-09 18:00:00');
 -- Mariluz
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2024-05-27 15:00:00', '2024-05-27 17:00:00');
+VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2022-05-30 15:00:00', '2022-05-30 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2024-05-30 16:00:00', '2024-05-30 18:00:00');
+VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2022-06-02 16:00:00', '2022-06-02 18:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2024-06-01 15:00:00', '2024-05-01 17:00:00');
+VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2022-06-04 15:00:00', '2022-05-04 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2024-06-06 16:00:00', '2024-06-06 18:00:00');
+VALUES ('marialuz.alvarez@ehu.eus', 23, 1, 2, '2022-06-09 16:00:00', '2022-06-09 18:00:00');
 -- Aitziber
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2024-05-27 15:00:00', '2024-05-27 17:00:00');
+VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2022-05-30 15:00:00', '2022-05-30 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2024-05-30 16:00:00', '2024-05-30 18:00:00');
+VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2022-06-02 16:00:00', '2022-06-02 18:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2024-06-01 15:00:00', '2024-05-01 17:00:00');
+VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2022-06-04 15:00:00', '2022-05-04 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2024-06-06 16:00:00', '2024-06-06 18:00:00');
+VALUES ('aitziber.atutxa@ehu.eus', 23, 2, 1, '2022-06-09 16:00:00', '2022-06-09 18:00:00');
 -- Koldo
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2024-05-27 15:00:00', '2024-05-27 17:00:00');
+VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2022-05-30 15:00:00', '2022-05-30 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2024-05-30 16:00:00', '2024-05-30 18:00:00');
+VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2022-06-02 16:00:00', '2022-06-02 18:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2024-06-01 15:00:00', '2024-05-01 17:00:00');
+VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2022-06-04 15:00:00', '2022-05-04 17:00:00');
 INSERT INTO tutorial (professor_email, room_number, room_floor, room_building, start_date, end_date)
-VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2024-06-06 16:00:00', '2024-06-06 18:00:00');
+VALUES ('koldo.gojenola@ehu.eus', 20, 3, 1, '2022-06-09 16:00:00', '2022-06-09 18:00:00');
 
